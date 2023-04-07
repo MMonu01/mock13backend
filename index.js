@@ -3,14 +3,14 @@ const connection = require("./configs/db")
 const cors = require("cors")
 require("dotenv").config()
 const {UserRouter} = require("./routes/UserRouter")
-const {AppointRouter} = require('./routes/AppointRrouter')
+const {AppointRouter} = require('./routes/AppointRouter')
 
 const app = express()
 
 app.use(express.json())
 app.use(cors())
 app.use("/users",UserRouter)
-app.use("/posts",AppointRouter)
+app.use("/",AppointRouter)
 
 
 app.listen(process.env.port,async()=>{
