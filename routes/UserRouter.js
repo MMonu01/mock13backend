@@ -1,11 +1,11 @@
 const express = require("express")
 const jwt = require("jsonwebtoken")
 const bcrypt = require("bcrypt")
+
 const {UserModel} = require("../models/UserModel")
 
 
 const UserRouter = express.Router()
-
 
 UserRouter.post("/register",async(req,res)=>{
    const {name,email,gender,password,age,city} = req.body
@@ -46,18 +46,25 @@ res.send("user is registered")
 
 
 UserRouter.post("/login",async(req,res)=>{
+
+
     const {email,password} = req.body
 
     const user = await UserModel.findOne({email})
-// res.send(user)
+
     try{
+
 if(user.email!==email){
     res.send("Wrong Credentialsjojsosj")
 }
+
+
 else{
     bcrypt.compare(password, user.password, (err, result) =>{
-        // result == false
+  
+
         if(result){
+
 let token = jwt.sign({UserId:user._id},"brain")
 res.send({msg:"login Successfull",token})
         }
@@ -73,8 +80,6 @@ res.send("Wrong Credentials")
         console.log(err)
         res.send("something went wrong")
     }
-
-
 })
 
 

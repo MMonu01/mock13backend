@@ -3,7 +3,7 @@ const connection = require("./configs/db")
 const cors = require("cors")
 require("dotenv").config()
 const {UserRouter} = require("./routes/UserRouter")
-const {AppointRouter} = require('./routes/AppointRroutes')
+const {AppointRouter} = require('./routes/AppointRrouter')
 
 const app = express()
 
